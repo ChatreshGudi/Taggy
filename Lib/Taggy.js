@@ -30,8 +30,8 @@ class Tag{
 
     addStyle(styleName, styleValue){
         ' Used to add a style to the tag. '
-        if (this.styleAttr_Name in this.styleAttr_Names){ // Checking if the attribute exists
-            this.styleAttr_Values[this.styleAttr_Names.indexOf(styleName)] = styleValue; // Updating the value
+        if (this.styleName in this.styleAttr_Name){ // Checking if the attribute exists
+            this.styleAttr_Value[this.styleAttr_Name.indexOf(styleName)] = styleValue; // Updating the value
         }
         else{
             this.styleAttr_Name.push(styleName); // Adding the style to the style string
@@ -88,24 +88,8 @@ class CustomTag{
 // Test
 
 let input = new Tag("input");
-input.setAttr("type", "number");
-input.setAttr("value", "0");
-input.setAttr("min", "0");
-input.setAttr("max", "100");
-input.addStyle("outline","none");
-// let div = new Tag("div");
-// div.setInnerText("Enter a number between 0 and 100:");
-// div.addChild(input.getElement());
-// div.addStyle("border","1px solid skyblue");
-// div.addStyle("padding", "10px");
-// div.addStyle("border-radius", "5px");
-// div.addStyle("box-shadow", "0px 0px 25px skyblue");
-let inp = document.createElement("input");
-// document.body.appendChild(input.getElement());
-document.body.appendChild(document.createElement("input"));
-
-// let inptbx = new Tag("inputBox");
-
-// let inputBox = new CustomTag(inptbx);
-// inputBox.define(div);
-// inputBox.publish();
+input.setAttr("type", "text");
+input.setAttr("placeholder", "Enter your name");
+input.setAttr("id", "name");
+input.addStyle("outline", "none");
+document.body.appendChild(input.getElement());
