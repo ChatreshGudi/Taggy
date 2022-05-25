@@ -69,7 +69,9 @@ class Tag{
 
     getElement(){
         ' Used to get the element of the tag. '
-        this.element.style = this.createStyleString();
+        if (this.styleAttr_Name.length > 0){ // Checking if there are styles
+            this.element.setAttribute("style", this.createStyleString()); // Setting the style
+        }
         return this.element; // Returning the element
     }
 }
