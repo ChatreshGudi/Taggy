@@ -18,6 +18,11 @@ class Tag{
         this.element.removeAttribute(Attr_Name);
     }
 
+    getAttr(Attr_Name){
+        ' Used to get an attribute from the tag. '
+        return this.element.getAttribute(Attr_Name);
+    }
+
     setInnerText(innerText){
         ' Used to set the inner text of the tag. '
         this.element.innerText = innerText; // Updating the innerText
@@ -69,12 +74,12 @@ class Tag{
     }
 }
 
+
 class CustomTag{
-    constructor( Tagname ){
+    constructor( Tag ){
         ' Used to create a new custom tag. '
-        this.TagName = Tagname;
+        this.Tag = Tag;
         this.actualTag;
-        this.innerHTMLTag;
     }
     define( realTag ){
         ' Used to define a custom tag. '
@@ -82,7 +87,7 @@ class CustomTag{
     }
     publish(){
         ' Used to publish the custom tag. '
-        let elements = document.getElementsByTagName(this.TagName);
+        let elements = document.getElementsByTagName(this.Tag.TagName);
         console.log(elements);
         for(var i = 0; i < elements.length; i++){
             console.log(this.actualTag)
@@ -103,8 +108,16 @@ input.setAttr("id", "name");
 input.addStyle("outline", "none");
 document.body.appendChild(input.getElement());
 
-let card = new CustomTag("card");
+let tagCard = new Tag("card");
+
+let card = new CustomTag(tagCard);
 let customcard = new Tag("div");
 customcard.setAttr("class", "card");
 card.define(customcard);
 card.publish();
+
+let smbtn = new CustomTag(new Tag("smbtn"));
+let customsmbtn = new Tag("button");
+customsmbtn.setAttr("class", "smart-btn");
+smbtn.define(customsmbtn);
+smbtn.publish();
