@@ -20,7 +20,12 @@ class Tag{
 
     setInnerText(innerText){
         ' Used to set the inner text of the tag. '
-        this.innerText = innerText; // Updating the innerText
+        this.element.innerText = innerText; // Updating the innerText
+    }
+    
+    setInnerHTML(innerHTML){
+        ' Used to set the inner text of the tag. '
+        this.element.innerHTML = innerHTML; // Updating the innerText
     }
 
     addChild(child){
@@ -65,8 +70,9 @@ class Tag{
 }
 
 class CustomTag{
-    constructor( Tag ){
-        this.customTag = Tag;
+    constructor( Tagname ){
+        ' Used to create a new custom tag. '
+        this.TagName = Tagname;
         this.actualTag;
         this.innerHTMLTag;
     }
@@ -76,11 +82,14 @@ class CustomTag{
     }
     publish(){
         ' Used to publish the custom tag. '
-        elements = document.getElementsByTagName(this.customTag.TagName);
+        let elements = document.getElementsByTagName(this.TagName);
+        console.log(elements);
         for(var i = 0; i < elements.length; i++){
-            elements[i].innerHTML = this.customTag.stringify();
-            elements[i].parentNode.replaceChild(this.actualTag.stringify(), elements[i]);
+            console.log(this.actualTag)
+            this.actualTag.setInnerHTML(elements[i].innerHTML);
+            elements[i].parentNode.replaceChild(this.actualTag.getElement(), elements[i]);
         }
+
 
     }
 }
@@ -93,3 +102,9 @@ input.setAttr("placeholder", "Enter your name");
 input.setAttr("id", "name");
 input.addStyle("outline", "none");
 document.body.appendChild(input.getElement());
+
+let card = new CustomTag("card");
+let customcard = new Tag("div");
+customcard.setAttr("class", "card");
+card.define(customcard);
+card.publish();
