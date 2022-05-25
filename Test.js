@@ -20,3 +20,15 @@ let customsmbtn = new Tag("button");
 customsmbtn.setAttr("class", "smart-btn");
 smbtn.define(customsmbtn);
 smbtn.publish();
+
+let animate = new Tag("animate");
+animate.setAttr("id", "rectid");
+animate.setAttr("attributeName", "fill");
+animate.setAttr("values", "blue;black;blue");
+animate.setAttr("dur", "5s");
+animate.setAttr("repeatCount", "2");
+animate.setAttr("begin", "0s");
+animate.setAttr("restart", "always");
+this.self.appendChild(animate.getElement());
+document.getElementById("fill").setAttribute("attributeName", "fill");
+document.getElementById("rect").appendChild(animate.getElement())
